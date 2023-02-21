@@ -1,5 +1,6 @@
+const { UNSAFE_enhanceManualRouteObjects } = require('react-router-dom');
 const {sequelize} = require('./db')
-const {Restaurant, Menu} = require('./models/index')
+const {Restaurant, Menu, Restaurant} = require('./models/index')
 const {
     seedRestaurant,
     seedMenu,
@@ -17,8 +18,14 @@ describe('Restaurant and Menu Models', () => {
     });
 
     test('can create a Restaurant', async () => {
-        // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const restaurant1 = await restaurant1.create({
+            name: 'Addison',
+            location: 'Manchester',
+            cuisine: 'Chinese'
+        })
+        expect(restaurant1.name).toBe("Addison");
+        expect(restaurant1.location).toBe("Manchester");
+        expect(restaurant1.cuisine).toBe("Chinese");
     });
 
     test('can create a Menu', async () => {
